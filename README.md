@@ -1,6 +1,6 @@
 # SimonGame
 
-How to play this game
+### How to play this game
 
 Press any key to start the game.
 
