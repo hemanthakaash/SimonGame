@@ -1,9 +1,14 @@
 var buttonColours = ["red", "blue", "green", "yellow"]
 var gamePattern = []
-var userClickedPattern = []
 var gameStarted = false;
 var gameLevel = 0
 var userLevel = 0
+
+function initGame(){
+    gameStarted = false;
+    gameLevel = 0;
+    gamePattern =[];
+}
 function nextSequence() {
     var randomNumber = Math.floor(Math.random() * 4)
     var chosenColour = buttonColours[randomNumber]
@@ -29,15 +34,18 @@ function checkClick(clickedId){
     }
     userLevel++;
     if(userLevel === gamePattern.length){
-        setTimeout(nextSequence,500);
+        setTimeout(nextSequence,1000);
     }
 }
 function endGame(){
     var audio = new Audio("sounds/wrong.mp3");
     audio.play();
-    audio.addEventListener("ended",function(){
-        window.location.reload();
-    })
+    $("body").addClass("game-over")
+    setTimeout(function(){
+        $("body").removeClass("game-over")
+    },200)
+    $(".title-level").text("Game Over! Press any key to restart");
+    initGame();
 }
 function buttonPressedAnimation(obj){
     obj.addClass("pressed")
